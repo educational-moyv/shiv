@@ -15,9 +15,7 @@
 }
 
 /* Reset */
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
@@ -192,7 +190,28 @@ nav h1 {
   width: 26vw;
 }
 
-/* Play Button Overlay */
+/* Play Button Overlay - centered */
+.featured a {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.featured .play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.featured a:hover .play-button { opacity: 1; }
+
 .featured .play-button i {
   font-size: 5vw;
   color: var(--accent);
@@ -205,7 +224,24 @@ nav h1 {
   to { transform: scale(1.2); opacity: 1; }
 }
 
-/* MOTD Overlay */
+/* Accessibility focus styles */
+#games a:focus-visible img,
+.featured a:focus-visible img {
+  outline: 3px solid #fff;
+  outline-offset: 4px;
+}
+
+/* MOTD Overlay - centered popup */
+.motd-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.75);
+  z-index: 2000;
+}
+
 .motd-box {
   background: var(--glass-bg);
   border: 1px solid var(--accent);
@@ -227,39 +263,4 @@ nav h1 {
   font-weight: 800;
   background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.motd-close:hover { color: var(--accent-secondary); }
-
-/* Animation */
-@keyframes motdFadeIn {
-  from { opacity: 0; transform: translateY(6px) scale(0.98); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-/* Mobile adjustments */
-@media (max-width: 720px) {
-  :root { --radius: 3vw; }
-
-  .featured img {
-    height: 30vw;
-    width: 30vw;
-  }
-
-  .featured .row img {
-    height: 60vw;
-    width: 60vw;
-  }
-
-  #games img {
-    height: 32vw;
-    width: 32vw;
-  }
-
-  .search {
-    margin: 5vw 2vw 0;
-  }
-
-  .motd-image {
-    height: 40vw;
+  -webkit-text-fill-color:
