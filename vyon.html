@@ -5,38 +5,100 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>NO MORE GAMES</title>
   <style>
-    body {
+    html, body {
       margin: 0;
-      background: linear-gradient(135deg, #000000, #001f3f);
+      padding: 0;
+      height: 100%;
+      background: #000;
+      overflow: hidden;
+      font-family: 'Courier New', monospace;
       color: #00bfff;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      overflow: hidden;
     }
 
-    h1 {
+    .glitch {
       font-size: 5rem;
-      font-weight: 900;
+      font-weight: bold;
       text-transform: uppercase;
-      letter-spacing: 0.2rem;
-      text-shadow: 0 0 10px #00bfff, 0 0 20px #0077be;
-      animation: pulse 2s infinite ease-in-out;
+      position: relative;
+      color: #00bfff;
+      text-align: center;
+      margin-bottom: 2rem;
+      animation: flicker 2s infinite;
     }
 
-    @keyframes pulse {
-      0%, 100% {
-        text-shadow: 0 0 10px #00bfff, 0 0 20px #0077be;
-      }
-      50% {
-        text-shadow: 0 0 20px #00bfff, 0 0 40px #0077be;
-      }
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+      color: #0077be;
+    }
+
+    .glitch::before {
+      animation: glitchTop 2s infinite linear;
+      top: -2px;
+    }
+
+    .glitch::after {
+      animation: glitchBottom 2s infinite linear;
+      top: 2px;
+    }
+
+    @keyframes glitchTop {
+      0% { clip-path: inset(0 0 90% 0); }
+      20% { clip-path: inset(0 0 10% 0); }
+      40% { clip-path: inset(0 0 80% 0); }
+      60% { clip-path: inset(0 0 20% 0); }
+      80% { clip-path: inset(0 0 70% 0); }
+      100% { clip-path: inset(0 0 30% 0); }
+    }
+
+    @keyframes glitchBottom {
+      0% { clip-path: inset(90% 0 0 0); }
+      20% { clip-path: inset(10% 0 0 0); }
+      40% { clip-path: inset(80% 0 0 0); }
+      60% { clip-path: inset(20% 0 0 0); }
+      80% { clip-path: inset(70% 0 0 0); }
+      100% { clip-path: inset(30% 0 0 0); }
+    }
+
+    @keyframes flicker {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.8; }
+    }
+
+    .message {
+      font-size: 1.5rem;
+      margin-bottom: 3rem;
+      text-align: center;
+      color: #66ccff;
+    }
+
+    .home-link {
+      font-size: 1.2rem;
+      color: #00bfff;
+      text-decoration: none;
+      border: 2px solid #00bfff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .home-link:hover {
+      background: #00bfff;
+      color: #000;
     }
   </style>
 </head>
 <body>
-  <h1>NO MORE GAMES</h1>
+  <div class="glitch" data-text="404 - NOT GONNA WORK">NO MORE GAMES</div>
+  <div class="message">This page has been hacked and deleted by vyom bhosle.<br>try studying for once.</div>
+  <a class="home-link" href="/">Return to Home</a>
 </body>
 </html>
